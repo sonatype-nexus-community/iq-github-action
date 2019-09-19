@@ -30,4 +30,7 @@ runs:
     - ${{ inputs.password }}
     - ${{ inputs.applicationId }}
     - ${{ inputs.stage }}
-    - ${{ inputs.scanTargets }}
+    - ${{ inputs.target }}
+branding:
+  icon: 'shield'
+  color: 'gray-dark'
