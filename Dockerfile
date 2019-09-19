@@ -17,6 +17,6 @@ FROM sonatype/nexus-iq-cli
 LABEL com.github.actions.name="IQ for GitHub Actions" \
     com.github.actions.description="Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow."
 
-COPY entrypoint.sh  /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

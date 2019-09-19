@@ -28,6 +28,39 @@ Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow.
 
 **Required** This is the path to a specific application archive file, a directory containing such archives or the ID of a Docker image. For archives, a number of formats are supported, including jar, war, ear, tar, tar.gz, zip and many others.
 
+## Example Usage
+
+Maven Build
+
+```
+name: Maven CI with Nexus IQ
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build with Maven
+      run: mvn package --file pom.xml
+    - name: Nexus IQ Policy Evaluation
+      uses: whyjustin/iq-github-action@master
+      with:
+        serverUrl: http://nexus-iq-server
+        username: username
+        password: ${{ secrets.password }}
+        applicationId: sample-maven
+        stage: Build
+        target: ./target/
+```
+
 ## The Fine Print
 
 It is worth noting that this is **NOT SUPPORTED** by Sonatype, and is a contribution of ours
