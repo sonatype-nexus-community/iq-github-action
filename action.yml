@@ -1,0 +1,33 @@
+name: 'IQ for GitHub Actions'
+author: 'Sonatype'
+description: 'Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow.'
+inputs:
+  serverUrl:
+    description: 'Nexus IQ Server URL'
+    required: true
+  username:
+    description: 'Username to connect to IQ Server for policy evaluation'
+    required: true
+  password:
+    description: 'Password to connect to IQ Server for policy evaluation'
+    required: true
+  applicationId:
+    description: 'Determines the policy elements (policies, labels, and license threat groups) to associate with this build, and is managed via the Nexus IQ Server.'
+    required: true
+  stage:
+    description: 'Controls the stage the policy evaluation will be run against on the Nexus IQ Server.'
+    required: true
+    default: 'Build'
+  target:
+    description: 'This is the path to a specific application archive file, a directory containing such archives or the ID of a Docker image. For archives, a number of formats are supported, including jar, war, ear, tar, tar.gz, zip and many others.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.serverUrl }}
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.applicationId }}
+    - ${{ inputs.stage }}
+    - ${{ inputs.scanTargets }}
