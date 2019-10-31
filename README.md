@@ -51,7 +51,7 @@ jobs:
     - name: Build with Maven
       run: mvn package --file pom.xml
     - name: Nexus IQ Policy Evaluation
-      uses: whyjustin/iq-github-action@master
+      uses: sonatype/iq-github-action@master
       with:
         serverUrl: http://nexus-iq-server
         username: username
