@@ -1,4 +1,4 @@
-name: 'IQ for GitHub Actions'
+name: 'Nexus IQ for GitHub Actions'
 author: 'Sonatype'
 description: 'Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow.'
 inputs:

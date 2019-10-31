@@ -1,4 +1,4 @@
-# IQ for GitHub Actions
+# Nexus IQ for GitHub Actions
 
 Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow.
 
