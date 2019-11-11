@@ -15,3 +15,5 @@
 # limitations under the License.
 
 /sonatype/evaluate -s $1 -a $2:$3 -i $4 -t $5 $GITHUB_WORKSPACE/$6
+# Clean up workspace
+rm -rf com.sonatype.insight.scan.outDir_IS_UNDEFINED
