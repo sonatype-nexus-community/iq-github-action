@@ -26,7 +26,7 @@ Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow.
 
 ### `target`
 
-**Required** This is the path to a specific application archive file, a directory containing such archives or the ID of a Docker image. For archives, a number of formats are supported, including jar, war, ear, tar, tar.gz, zip and many others.
+**Required** This is the path to a specific application archive file, a directory containing such archives or the ID of a Docker image. For archives, a number of formats are supported, including jar, war, ear, tar, tar.gz, zip and many others. If your target is within your GitHub workspace, remember to add the variable $GITHUB_WORKSPACE in front of the path
 
 ## Example Usage
 
