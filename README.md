@@ -2,31 +2,46 @@
 
 Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow.
 
+- [Description](#description)
+- [Inputs](#inputs)
+- [Runs](#runs)
+- [Example Usage](#example-usage)
+- [The Fine Print](#the-fine-print)
+- [Getting help](#getting-help)
+
+
+<!-- action-docs-header source="action.yml" -->
+
+<!-- action-docs-header source="action.yml" -->
+
+<!-- action-docs-description source="action.yml" -->
+## Description
+
+Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow.
+<!-- action-docs-description source="action.yml" --> 
+
+<!-- action-docs-inputs source="action.yml" -->
 ## Inputs
 
-### `serverUrl`
+| name | description | required | default |
+| --- | --- | --- | --- |
+| `serverUrl` | <p>Nexus IQ Server URL</p> | `true` | `""` |
+| `username` | <p>Username to connect to IQ Server for policy evaluation</p> | `true` | `""` |
+| `password` | <p>Password to connect to IQ Server for policy evaluation</p> | `true` | `""` |
+| `applicationId` | <p>Determines the policy elements (policies, labels, and license threat groups) to associate with this build, and is managed via the Nexus IQ Server.</p> | `true` | `""` |
+| `stage` | <p>Controls the stage the policy evaluation will be run against on the Nexus IQ Server.</p> | `true` | `Build` |
+| `target` | <p>This is the path to a specific application archive file, a directory containing such archives or the ID of a Docker image. For archives, a number of formats are supported, including jar, war, ear, tar, tar.gz, zip and many others.</p> | `true` | `""` |
+<!-- action-docs-inputs source="action.yml" -->
 
-**Required** Nexus IQ Server URL
+<!-- action-docs-outputs source="action.yml" -->
 
-### `username`
+<!-- action-docs-outputs source="action.yml" -->
 
-**Required** Username to connect to IQ Server for policy evaluation
+<!-- action-docs-runs source="action.yml" -->
+## Runs
 
-### `password`
-
-**Required** Password to connect to IQ Server for policy evaluation
-
-### `applicationId`
-
-**Required** Determines the policy elements (policies, labels, and license threat groups) to associate with this build, and is managed via the Nexus IQ Server.
-
-### `stage`
-
-**Required** Controls the stage the policy evaluation will be run against on the Nexus IQ Server.
-
-### `target`
-
-**Required** This is the path to a specific application archive file, a directory containing such archives or the ID of a Docker image. For archives, a number of formats are supported, including jar, war, ear, tar, tar.gz, zip and many others.
+This action is a `docker` action.
+<!-- action-docs-runs source="action.yml" -->
 
 ## Example Usage
 
