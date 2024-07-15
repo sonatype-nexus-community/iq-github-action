@@ -19,8 +19,13 @@ inputs:
     required: true
     default: 'Build'
   target:
-    description: 'The scan target path - can be an archive or directory. Value will be prefixed by `$GITHUB_WORKSPACE`.'
+    description: 'The scan target path - can be an archive or directory. Value will be prefixed by `$GITHUB_WORKSPACE`. Default will be the entire GitHub Workspace.'
     required: true
+    default: "/"
+  debug:
+    description: 'Whether to enable Debug Logging. Set to `true` to enable.'
+    required: false
+    default: 'false'
   proxy:
     description: 'Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server.'
     required: false
@@ -37,6 +42,7 @@ runs:
     - ${{ inputs.applicationId }}
     - ${{ inputs.stage }}
     - ${{ inputs.target }}
+    - ${{ inputs.debug }}
     - ${{ inputs.proxy }}
     - ${{ inputs.proxyUser }}
 branding:
