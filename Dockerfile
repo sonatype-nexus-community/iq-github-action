@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM sonatype/nexus-iq-cli
+FROM sonatype/nexus-iq-cli:latest
 
-LABEL com.github.actions.name="Nexus IQ for GitHub Actions" \
-    com.github.actions.description="Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow."
+LABEL com.github.actions.name="Sonatype Lifecycle for GitHub Actions" \
+    com.github.actions.description="Run a Sonatype Lifecycle policy evaluation as part of your GitHub Actions workflow."
 
 COPY entrypoint.sh /entrypoint.sh
 
