@@ -26,11 +26,14 @@ Run a Sonatype Lifecycle policy evaluation as part of your GitHub Actions workfl
 | name | description | required | default |
 | --- | --- | --- | --- |
 | `serverUrl` | <p>Sonatype Lifecycle Server URL</p> | `true` | `""` |
-| `username` | <p>Username to connect to Sonatype Lifecycle Server for policy evaluation</p> | `true` | `""` |
-| `password` | <p>Password to connect to Sonatype Lifecycle Server for policy evaluation</p> | `true` | `""` |
+| `username` | <p>Username to connect to Sonatype Lifecycle Server for policy evaluation. Can be the first part of a User Token.</p> | `true` | `""` |
+| `password` | <p>Password to connect to Sonatype Lifecycle Server for policy evaluation. Can be the second part of a User Token.</p> | `true` | `""` |
 | `applicationId` | <p>Determines the policy elements (policies, labels, and license threat groups) to associate with this build, and is managed via the Sonatype Lifecycle Server.</p> | `true` | `""` |
 | `stage` | <p>Controls the stage the policy evaluation will be run against on the Sonatype Lifecycle Server.</p> | `true` | `Build` |
-| `target` | <p>This is the path to a specific application archive file, a directory containing such archives or the ID of a Docker image. For archives, a number of formats are supported, including jar, war, ear, tar, tar.gz, zip and many others.</p> | `true` | `""` |
+| `target` | <p>The scan target path - can be an archive or directory. Value will be prefixed by <code>$GITHUB_WORKSPACE</code>. Default will be the entire GitHub Workspace.</p> | `true` | `/` |
+| `debug` | <p>Whether to enable Debug Logging. Set to <code>true</code> to enable. <strong>Not recommended to enable in Production Environments.</strong></p> | `false` | `false` |
+| `proxy` | <p>Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server.</p> | `false` | `""` |
+| `proxyUser` | <p>Proxy username and password in the format <username:password> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server and it requires authentication.</p> | `false` | `""` |
 <!-- action-docs-inputs source="action.yml" -->
 
 <!-- action-docs-outputs source="action.yml" -->

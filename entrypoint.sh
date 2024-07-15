@@ -14,10 +14,43 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+DEBUG_ENABLED=0
+if [[ "true" == "${7}" ]]; then
+    DEBUG_ENABLED=1
+fi
+
+debug() {
+    # $1 is message
+    if [[ $DEBUG_ENABLED == 1 ]]; then
+        echo $1
+    fi
+}
+
 cleanup() {
     # Clean up workspace
     rm -rf com.sonatype.insight.scan.outDir_IS_UNDEFINED
 }
 trap cleanup EXIT
 
-/sonatype/evaluate -s $1 -a $2:$3 -i $4 -t $5 $GITHUB_WORKSPACE/$6
+debug "Preparing the Sonatype Lifecycle GitHub Action..."
+
+EVALUATE_OPTS="-s $1 -a $2:$3 -i $4 -t $5"
+TARGET="$GITHUB_WORKSPACE/$6"
+
+# If Debug Enabled, pass the flag to IQ CLI
+if [[ $DEBUG_ENABLED == 1 ]]; then
+    EVALUATE_OPTS="${EVALUATE_OPTS} -X"
+fi
+
+# Handle optional Proxy arguments
+if [[ ! -z "$8" ]]; then
+    EVALUATE_OPTS="${EVALUATE_OPTS} -p ${8}"
+fi
+if [ ! -z "$9" ]; then
+    EVALUATE_OPTS="${EVALUATE_OPTS} -U ${9}"
+fi
+
+debug "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
+debug "Target will be: ${TARGET}"
+
+/sonatype/evaluate $EVALUATE_OPTS $TARGET
