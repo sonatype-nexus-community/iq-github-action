@@ -23,8 +23,8 @@ trap cleanup EXIT
 EVALUATE_OPTS="-s $1 -a $2:$3 -i $4 -t $5"
 
 # Handle optional Proxy arguments
-if [ -z "$7" ]; then
-    EVALUATE_OPTS="${EVALUATE_OPTS} -p $7"
+if [ -z "${7}" ]; then
+    EVALUATE_OPTS="${EVALUATE_OPTS} -p ${7}"
 fi
 if [ -z "$8" ]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -U $8"
