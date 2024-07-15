@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+echo "Preparing the Sonatype Lifecycle GitHub Action..."
+
 cleanup() {
     # Clean up workspace
     rm -rf com.sonatype.insight.scan.outDir_IS_UNDEFINED
@@ -30,5 +32,6 @@ if [ -z "$8" ]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -U $8"
 fi
 
+echo "EVALUATE_OPTS will be: "${EVALUATE_OPTS}"
 
 /sonatype/evaluate $EVALUATE_OPTS $GITHUB_WORKSPACE/$6
