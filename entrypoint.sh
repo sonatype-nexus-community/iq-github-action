@@ -32,6 +32,6 @@ if [ -z "$8" ]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -U $8"
 fi
 
-echo "EVALUATE_OPTS will be: "${EVALUATE_OPTS}"
+echo "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
 
 /sonatype/evaluate $EVALUATE_OPTS $GITHUB_WORKSPACE/$6
