@@ -20,4 +20,4 @@ cleanup() {
 }
 trap cleanup EXIT
 
-/sonatype/evaluate -s $1 -a $2:$3 -i $4 -t $5 -p $7 -U $8 $GITHUB_WORKSPACE/$6
+/sonatype/evaluate -s $1 -a $2:$3 -i $4 -t $5 -p ${7:-""} -U ${8:-""} $GITHUB_WORKSPACE/$6
