@@ -15,8 +15,8 @@
 # limitations under the License.
 
 cleanup() {
-# Clean up workspace
-rm -rf com.sonatype.insight.scan.outDir_IS_UNDEFINED
+    # Clean up workspace
+    rm -rf com.sonatype.insight.scan.outDir_IS_UNDEFINED
 }
 trap cleanup EXIT
 

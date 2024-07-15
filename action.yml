@@ -1,21 +1,21 @@
-name: 'Nexus IQ for GitHub Actions'
-author: 'Sonatype'
-description: 'Run a Nexus IQ policy evaluation as part of your GitHub Actions workflow.'
+name: 'Sonatype Lifecycle GitHub Action'
+author: 'Sonatype Community'
+description: 'Run a Sonatype Lifecycle policy evaluation as part of your GitHub Actions workflow.'
 inputs:
   serverUrl:
-    description: 'Nexus IQ Server URL'
+    description: 'Sonatype Lifecycle Server URL'
     required: true
   username:
-    description: 'Username to connect to IQ Server for policy evaluation'
+    description: 'Username to connect to Sonatype Lifecycle Server for policy evaluation'
     required: true
   password:
-    description: 'Password to connect to IQ Server for policy evaluation'
+    description: 'Password to connect to Sonatype Lifecycle Server for policy evaluation'
     required: true
   applicationId:
-    description: 'Determines the policy elements (policies, labels, and license threat groups) to associate with this build, and is managed via the Nexus IQ Server.'
+    description: 'Determines the policy elements (policies, labels, and license threat groups) to associate with this build, and is managed via the Sonatype Lifecycle Server.'
     required: true
   stage:
-    description: 'Controls the stage the policy evaluation will be run against on the Nexus IQ Server.'
+    description: 'Controls the stage the policy evaluation will be run against on the Sonatype Lifecycle Server.'
     required: true
     default: 'Build'
   target:
