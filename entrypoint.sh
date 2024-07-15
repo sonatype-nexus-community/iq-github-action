@@ -20,4 +20,15 @@ cleanup() {
 }
 trap cleanup EXIT
 
-/sonatype/evaluate -s $1 -a $2:$3 -i $4 -t $5 -p ${7:-""} -U ${8:-""} $GITHUB_WORKSPACE/$6
+EVALUATE_OPTS="-s $1 -a $2:$3 -i $4 -t $5"
+
+# Handle optional Proxy arguments
+if [ -z "$7" ]; then
+    EVALUATE_OPTS="${EVALUATE_OPTS} -p $7"
+fi
+if [ -z "$8" ]; then
+    EVALUATE_OPTS="${EVALUATE_OPTS} -U $8"
+fi
+
+
+/sonatype/evaluate $EVALUATE_OPTS $GITHUB_WORKSPACE/$6
