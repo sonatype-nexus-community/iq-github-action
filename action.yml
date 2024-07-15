@@ -23,7 +23,7 @@ inputs:
     required: true
     default: "/"
   debug:
-    description: 'Whether to enable Debug Logging. Set to `true` to enable.'
+    description: 'Whether to enable Debug Logging. Set to `true` to enable. **Not recommended to enable in Production Environments.**'
     required: false
     default: 'false'
   proxy:
