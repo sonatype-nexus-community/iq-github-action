@@ -19,8 +19,6 @@ if [[ "true" == "${7}" ]]; then
     DEBUG_ENABLED=1
 fi
 
-NEXUS_CONTAINER_SCANNING_MOUNT_PATH=`$RUNNER_TEMP`
-
 debug() {
     # $1 is message
     if [[ $DEBUG_ENABLED == 1 ]]; then
@@ -31,7 +29,6 @@ debug() {
 cleanup() {
     # Clean up workspace
     rm -rf com.sonatype.insight.scan.outDir_IS_UNDEFINED
-    rm -rf $NEXUS_CONTAINER_SCANNING_MOUNT_PATH
 }
 trap cleanup EXIT
 
@@ -58,8 +55,8 @@ if [[ "true" == "${10}" ]]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -r $GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json"
 fi
 
-debug "NEXUS_CONTAINER_SCANNING_MOUNT_PATH will be: ${NEXUS_CONTAINER_SCANNING_MOUNT_PATH}"
+debug "NEXUS_CONTAINER_SCANNING_MOUNT_PATH will be: ${RUNNER_TEMP}"
 debug "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
 debug "Target will be: ${TARGETS}"
 
-NEXUS_CONTAINER_SCANNING_MOUNT_PATH=$NEXUS_CONTAINER_SCANNING_MOUNT_PATH /sonatype/evaluate $EVALUATE_OPTS $TARGETS
+NEXUS_CONTAINER_SCANNING_MOUNT_PATH=$RUNNER_TEMP /sonatype/evaluate $EVALUATE_OPTS $TARGETS
