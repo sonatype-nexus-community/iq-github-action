@@ -19,7 +19,7 @@ if [[ "true" == "${7}" ]]; then
     DEBUG_ENABLED=1
 fi
 
-NEXUS_CONTAINER_SCANNING_MOUNT_PATH=`mktemp -d -p $GITHUB_WORKSPACE`
+NEXUS_CONTAINER_SCANNING_MOUNT_PATH=`$RUNNER_TEMP`
 
 debug() {
     # $1 is message
