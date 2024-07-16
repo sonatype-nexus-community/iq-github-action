@@ -34,6 +34,7 @@ Run a Sonatype Lifecycle policy evaluation as part of your GitHub Actions workfl
 | `debug` | <p>Whether to enable Debug Logging. Set to <code>true</code> to enable. <strong>Not recommended to enable in Production Environments.</strong> <em>Added in v2.0.0</em>.</p> | `false` | `false` |
 | `proxy` | <p>Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server. <em>Added in v2.0.0</em>.</p> | `false` | `""` |
 | `proxyUser` | <p>Proxy username and password in the format <username:password> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server and it requires authentication. <em>Added in v2.0.0</em>.</p> | `false` | `""` |
+| `writePolicyEvaluationJson` | <p>Whether to keep a copy of the Policy Evaluation JSON file or not. If set to <code>true</code>, it will be written to <code>$GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json</code>. <em>Added in v2.1.0</em>.</p> | `false` | `false` |
 <!-- action-docs-inputs source="action.yml" -->
 
 <!-- action-docs-outputs source="action.yml" -->
