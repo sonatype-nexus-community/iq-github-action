@@ -18,22 +18,40 @@ inputs:
     description: 'Controls the stage the policy evaluation will be run against on the Sonatype Lifecycle Server.'
     required: true
     default: 'Build'
-  target:
-    description: 'The scan target path - can be an archive or directory. Value will be prefixed by `$GITHUB_WORKSPACE`. Default will be the entire GitHub Workspace.'
+  targets:
+    description: |
+      The scan target path. Can be one or more targets (space delimited) including directories, files, archives or containers. 
+      Paths to directories, files and archives must be full paths - typically under `$GITHUB_WORKSPACE`.
+      
+      *Added in v3.0.0*.'
     required: true
-    default: "/"
   debug:
-    description: 'Whether to enable Debug Logging. Set to `true` to enable. **Not recommended to enable in Production Environments.** *Added in v2.0.0*.'
+    description: |
+      Whether to enable Debug Logging. 
+      Set to `true` to enable. 
+      
+      **Not recommended to enable in Production Environments.** 
+      
+      *Added in v2.0.0*.'
     required: false
     default: 'false'
   proxy:
-    description: 'Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server. *Added in v2.0.0*.'
+    description: |
+      Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server. 
+      
+      *Added in v2.0.0*.
     required: false
   proxyUser:
-    description: 'Proxy username and password in the format <username:password> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server and it requires authentication. *Added in v2.0.0*.'
+    description: |
+      Proxy username and password in the format <username:password> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server and it requires authentication. 
+      
+      *Added in v2.0.0*.
     required: false
   writePolicyEvaluationJson:
-    description: 'Whether to keep a copy of the Policy Evaluation JSON file or not. If set to `true`, it will be written to `$GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json`. *Added in v2.1.0*.'
+    description: |
+      Whether to keep a copy of the Policy Evaluation JSON file or not. If set to `true`, it will be written to `$GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json`. 
+      
+      *Added in v2.1.0*.
     required: false
     default: 'false'
 runs:
@@ -45,7 +63,7 @@ runs:
     - ${{ inputs.password }}
     - ${{ inputs.applicationId }}
     - ${{ inputs.stage }}
-    - ${{ inputs.target }}
+    - ${{ inputs.targets }}
     - ${{ inputs.debug }}
     - ${{ inputs.proxy }}
     - ${{ inputs.proxyUser }}

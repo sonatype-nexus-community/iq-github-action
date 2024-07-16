@@ -7,7 +7,9 @@ Run a Sonatype Lifecycle policy evaluation as part of your GitHub Actions workfl
 - [Runs](#runs)
 - [Example Usage](#example-usage)
   - [Maven Build](#maven-build)
-- [Migration from v1](#migration-from-v1)
+- [Migration from v2 to v3](#migration-from-v2-to-v3)
+  - [Breaking Changes](#breaking-changes)
+- [Migration from v1 to v2](#migration-from-v1-to-v2)
 - [The Fine Print](#the-fine-print)
 
 <!-- action-docs-header source="action.yml" -->
@@ -30,11 +32,11 @@ Run a Sonatype Lifecycle policy evaluation as part of your GitHub Actions workfl
 | `password` | <p>Password to connect to Sonatype Lifecycle Server for policy evaluation. Can be the second part of a User Token.</p> | `true` | `""` |
 | `applicationId` | <p>Determines the policy elements (policies, labels, and license threat groups) to associate with this build, and is managed via the Sonatype Lifecycle Server.</p> | `true` | `""` |
 | `stage` | <p>Controls the stage the policy evaluation will be run against on the Sonatype Lifecycle Server.</p> | `true` | `Build` |
-| `target` | <p>The scan target path - can be an archive or directory. Value will be prefixed by <code>$GITHUB_WORKSPACE</code>. Default will be the entire GitHub Workspace.</p> | `true` | `/` |
-| `debug` | <p>Whether to enable Debug Logging. Set to <code>true</code> to enable. <strong>Not recommended to enable in Production Environments.</strong> <em>Added in v2.0.0</em>.</p> | `false` | `false` |
-| `proxy` | <p>Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server. <em>Added in v2.0.0</em>.</p> | `false` | `""` |
-| `proxyUser` | <p>Proxy username and password in the format <username:password> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server and it requires authentication. <em>Added in v2.0.0</em>.</p> | `false` | `""` |
-| `writePolicyEvaluationJson` | <p>Whether to keep a copy of the Policy Evaluation JSON file or not. If set to <code>true</code>, it will be written to <code>$GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json</code>. <em>Added in v2.1.0</em>.</p> | `false` | `false` |
+| `targets` | <p>The scan target path. Can be one or more targets (space delimited) including directories, files, archives or containers.  Paths to directories, files and archives must be full paths - typically under <code>$GITHUB_WORKSPACE</code>.</p> | `true` | `""` |
+| `debug` | <p>Whether to enable Debug Logging.  Set to <code>true</code> to enable. </p> <p><strong>Not recommended to enable in Production Environments.</strong> </p> <p><em>Added in v2.0.0</em>.'</p> | `false` | `false` |
+| `proxy` | <p>Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server. </p> <p><em>Added in v2.0.0</em>.</p> | `false` | `""` |
+| `proxyUser` | <p>Proxy username and password in the format <username:password> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server and it requires authentication. </p> <p><em>Added in v2.0.0</em>.</p> | `false` | `""` |
+| `writePolicyEvaluationJson` | <p>Whether to keep a copy of the Policy Evaluation JSON file or not. If set to <code>true</code>, it will be written to <code>$GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json</code>. </p> <p><em>Added in v2.1.0</em>.</p> | `false` | `false` |
 <!-- action-docs-inputs source="action.yml" -->
 
 <!-- action-docs-outputs source="action.yml" -->
@@ -92,17 +94,25 @@ jobs:
         run: mvn package --file pom.xml
 
       - name: Sonatype Lifecycle Policy Evaluation
-        uses: sonatype-nexus-community/iq-github-action@v2
+        uses: sonatype-nexus-community/iq-github-action@v3
         with:
           serverUrl: ${{ secrets.SONATYPE_LIFECYCLE_URL }}
           username: ${{ secrets.SONATYPE_LIFECYCLE_USERNAME }}
           password: ${{ secrets.SONATYPE_LIFECYCLE_PASSWORD }}
           applicationId: ${{ env.SONATYPE_LIFECYCLE_APPLICATION_ID }}
           stage: Build
-          target: ./target/
+          targets: ${{ GITHUB_WORKSPACE}}/target/
 ```
 
-## Migration from v1
+## Migration from v2 to v3
+
+`v2` remains available on the `v2` branch and can be used by referencing `sonatype-nexus-community/iq-github-action@v2`.
+
+### Breaking Changes
+
+- The input parameter `target` has been renamed to `targets` to reflect the fact multiple targets can be provided for a single scan
+
+## Migration from v1 to v2
 
 `v1` remains available on the `v1` branch and can be used by referencing `sonatype-nexus-community/iq-github-action@v1`.
 

@@ -35,7 +35,7 @@ trap cleanup EXIT
 debug "Preparing the Sonatype Lifecycle GitHub Action..."
 
 EVALUATE_OPTS="-s $1 -a $2:$3 -i $4 -t $5"
-TARGET="$GITHUB_WORKSPACE/$6"
+TARGETS="$6"
 
 # If Debug Enabled, pass the flag to IQ CLI
 if [[ $DEBUG_ENABLED == 1 ]]; then
@@ -56,6 +56,6 @@ if [[ "true" == "${10}" ]]; then
 fi
 
 debug "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
-debug "Target will be: ${TARGET}"
+debug "Target will be: ${TARGETS}"
 
-/sonatype/evaluate $EVALUATE_OPTS $TARGET
+/sonatype/evaluate $EVALUATE_OPTS $TARGETS
