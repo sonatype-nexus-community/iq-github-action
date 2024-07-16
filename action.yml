@@ -23,14 +23,14 @@ inputs:
     required: true
     default: "/"
   debug:
-    description: 'Whether to enable Debug Logging. Set to `true` to enable. **Not recommended to enable in Production Environments.**'
+    description: 'Whether to enable Debug Logging. Set to `true` to enable. **Not recommended to enable in Production Environments.** *Added in v2.0.0*.'
     required: false
     default: 'false'
   proxy:
-    description: 'Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server.'
+    description: 'Proxy host in the format <host[:port]> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server. *Added in v2.0.0*.'
     required: false
   proxyUser:
-    description: 'Proxy username and password in the format <username:password> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server and it requires authentication.'
+    description: 'Proxy username and password in the format <username:password> if you need to transit a Proxy to connect to your Sonatype Lifecycle Server and it requires authentication. *Added in v2.0.0*.'
     required: false
 runs:
   using: 'docker'
