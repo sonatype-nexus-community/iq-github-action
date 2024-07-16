@@ -50,6 +50,11 @@ if [ ! -z "$9" ]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -U ${9}"
 fi
 
+# Handle $10 for -r flag
+if [[ "true" == "${10}" ]]; then
+    EVALUATE_OPTS="${EVALUATE_OPTS} -r $GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json"
+fi
+
 debug "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
 debug "Target will be: ${TARGET}"
 
