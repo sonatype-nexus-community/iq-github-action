@@ -11,15 +11,13 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Update CHANGELOG
-              id: changelog
-              uses: requarks/changelog-action@v1
-              with:
-                  token: ${{ secrets.github_token }}
-                  tag: ${{ github.ref_name }}
-                  writeToFile:
+            - name: Build Changelog
+              id: github_release
+              uses: mikepenz/release-changelog-builder-action@v4
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Create Release
               uses: mikepenz/action-gh-release@v0.6.0
               with:
-                  body: ${{ steps.changelog.outputs.changes }}
+                  body: ${{steps.github_release.outputs.changelog}}
