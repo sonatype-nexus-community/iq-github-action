@@ -1,0 +1,23 @@
+name: 'Release Action'
+
+on:
+    push:
+        tags:
+            - 'v*'
+
+jobs:
+    release:
+        name: 'Release Action'
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Build Changelog
+              id: github_release
+              uses: mikepenz/release-changelog-builder-action@v4
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Create Release
+              uses: mikepenz/action-gh-release@v0.6.0
+              with:
+                  body: ${{steps.github_release.outputs.changelog}}
