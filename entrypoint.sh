@@ -55,10 +55,10 @@ if [[ "true" == "${10}" ]]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -r $GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json"
 fi
 
-debug "NEXUS_CONTAINER_SCANNING_MOUNT_PATH will be: ${GITHUB_WORKSPACE}"
+debug "NEXUS_CONTAINER_SCANNING_MOUNT_PATH will be: /github/workspace"
 debug "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
 debug "Target will be: ${TARGETS}"
 
-echo "TEST123" > $GITHUB_WORKSPACE/test-write.txt
+echo "TEST123" > /github/workspace/test-write.txt
 
-NEXUS_CONTAINER_SCANNING_MOUNT_PATH=$GITHUB_WORKSPACE /sonatype/evaluate $EVALUATE_OPTS $TARGETS
+NEXUS_CONTAINER_SCANNING_MOUNT_PATH=/github/workspace /sonatype/evaluate $EVALUATE_OPTS $TARGETS
