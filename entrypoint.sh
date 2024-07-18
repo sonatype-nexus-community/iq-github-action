@@ -59,6 +59,10 @@ debug "NEXUS_CONTAINER_SCANNING_MOUNT_PATH will be: /github/workspace"
 debug "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
 debug "Target will be: ${TARGETS}"
 
+pwd
+ls -al /
+ls -al /github
+ls -al /github/workspace
 echo "TEST123" > /github/workspace/test-write.txt
 
 NEXUS_CONTAINER_SCANNING_MOUNT_PATH=/github/workspace /sonatype/evaluate $EVALUATE_OPTS $TARGETS
