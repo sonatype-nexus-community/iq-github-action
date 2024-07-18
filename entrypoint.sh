@@ -35,7 +35,7 @@ trap cleanup EXIT
 debug "Preparing the Sonatype Lifecycle GitHub Action..."
 
 EVALUATE_OPTS="-s $1 -a $2:$3 -i $4 -t $5"
-TARGET="$GITHUB_WORKSPACE/$6"
+TARGETS="$6"
 
 # If Debug Enabled, pass the flag to IQ CLI
 if [[ $DEBUG_ENABLED == 1 ]]; then
@@ -55,7 +55,14 @@ if [[ "true" == "${10}" ]]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -r $GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json"
 fi
 
+debug "NEXUS_CONTAINER_SCANNING_MOUNT_PATH will be: /github/workspace"
 debug "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
-debug "Target will be: ${TARGET}"
+debug "Target will be: ${TARGETS}"
 
-/sonatype/evaluate $EVALUATE_OPTS $TARGET
+pwd
+ls -al /
+ls -al /github
+ls -al /github/workspace
+echo "TEST123" > /github/workspace/test-write.txt
+
+NEXUS_CONTAINER_SCANNING_MOUNT_PATH=/github/workspace /sonatype/evaluate $EVALUATE_OPTS $TARGETS
