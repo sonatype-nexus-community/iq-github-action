@@ -15,14 +15,14 @@
 # limitations under the License.
 
 DEBUG_ENABLED=0
-if [[ "true" == "${7}" ]]; then
+if [ "true" = "${7}" ]; then
     DEBUG_ENABLED=1
 fi
 
 debug() {
     # $1 is message
-    if [[ $DEBUG_ENABLED == 1 ]]; then
-        echo $1
+    if [ "$DEBUG_ENABLED" = 1 ]; then
+        echo "$1"
     fi
 }
 
@@ -38,24 +38,24 @@ EVALUATE_OPTS="-s $1 -a $2:$3 -i $4 -t $5"
 TARGET="$GITHUB_WORKSPACE/$6"
 
 # If Debug Enabled, pass the flag to IQ CLI
-if [[ $DEBUG_ENABLED == 1 ]]; then
+if [ "$DEBUG_ENABLED" = 1 ]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -X"
 fi
 
 # Handle optional Proxy arguments
-if [[ ! -z "$8" ]]; then
+if [ -n "$8" ]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -p ${8}"
 fi
-if [ ! -z "$9" ]; then
+if [ -n "$9" ]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -U ${9}"
 fi
 
 # Handle $10 for -r flag
-if [[ "true" == "${10}" ]]; then
+if [ "true" = "${10}" ]; then
     EVALUATE_OPTS="${EVALUATE_OPTS} -r $GITHUB_WORKSPACE/sonatype-lifecycle-policy-eval.json"
 fi
 
 debug "EVALUATE_OPTS will be: ${EVALUATE_OPTS}"
 debug "Target will be: ${TARGET}"
 
-/sonatype/evaluate $EVALUATE_OPTS $TARGET
+/sonatype/evaluate "$EVALUATE_OPTS" "$TARGET"
