@@ -1,5 +1,10 @@
 # Sonatype Lifecycle GitHub Action
 
+> ℹ️ As of 10th December 2024, this community project has [graduated](https://contribute.sonatype.com/docs/project-classification/) and is offered as part of Sonatype's commercial offerings - see [here](https://help.sonatype.com/en/sonatype-github-actions.html) for full details.
+>
+> 🚧 This community project will receive not accept further contributions nor receive maintenance.
+
+
 Run a Sonatype Lifecycle policy evaluation as part of your GitHub Actions workflow.
 
 - [Description](#description)
